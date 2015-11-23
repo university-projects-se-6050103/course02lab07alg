@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Main {
-    private static final int verticiesCount = 9;
+    private static final int verticesCount = 9;
     private static List<Vertex> vertices = new ArrayList<>();
     private static Map<Integer, ArrayList<Double>> nearestPaths = new HashMap<>();
 
@@ -16,8 +16,8 @@ public class Main {
     public static void main(String[] args) {
         calculateShortestPathForVertices();
 
-        for (int i = 0; i < verticiesCount; i++) {
-            for (int j = 0; j < verticiesCount; j++) {
+        for (int i = 0; i < verticesCount; i++) {
+            for (int j = 0; j < verticesCount; j++) {
                 Double minDistance = nearestPaths.get(i).get(j);
                 if (minDistance != 0) {
                     System.out.println("Від " + (i + 1) + " до " + (j + 1) + " відстань: " +
@@ -29,7 +29,7 @@ public class Main {
     }
 
     private static void calculateShortestPathForVertices() {
-        for (int i = 0; i < verticiesCount; i++) {
+        for (int i = 0; i < verticesCount; i++) {
             calculateShortestPathForVertex(i);
         }
     }
@@ -37,13 +37,13 @@ public class Main {
     private static void calculateShortestPathForVertex(int vertexIndex) {
         nearestPaths.put(vertexIndex, new ArrayList<>());
         DijkstraAlgorithm.computeShortestPaths(vertices.get(vertexIndex));
-        for (int i = 0; i < verticiesCount; i++) {
+        for (int i = 0; i < verticesCount; i++) {
             nearestPaths.get(vertexIndex).add(vertices.get(i).minDistance);
         }
     }
 
     private static void createVertices() {
-        for (int i = 0; i < verticiesCount; i++) {
+        for (int i = 0; i < verticesCount; i++) {
             Vertex vertex = new Vertex("вершина " + (i + 1));
             vertices.add(vertex);
         }
