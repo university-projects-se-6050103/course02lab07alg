@@ -2,9 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+    private static final int verticiesCount = 9;
+
     public static void main(String[] args) {
         List<Vertex> vertices = new ArrayList<>();
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < verticiesCount; i++) {
             Vertex vertex = new Vertex("вершина " + (i + 1));
             vertices.add(vertex);
         }
@@ -35,18 +37,17 @@ public class Main {
         vertices.get(7).addEdge(vertices.get(8), 315);
 
 
-
         Dijkstra.computePaths(vertices.get(0)); // run Dijkstra
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < verticiesCount; i++) {
             Dijkstra.V1Array.add(vertices.get(0).minDistance);
         }
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < verticiesCount; i++) {
             Dijkstra.V1Array.add(vertices.get(i).minDistance);
         }
 
 
-        for(int i = 0; i < 9; i++) {
+        for (int i = 0; i < verticiesCount; i++) {
             System.out.println("Відстань від першої вершини до вершини " + (i + 1) + ": " + vertices.get(i).minDistance);
         }
 
