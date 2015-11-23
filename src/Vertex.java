@@ -3,20 +3,29 @@ import java.util.List;
 
 public class Vertex implements Comparable<Vertex> {
     public final String name;
-    public List<Edge> neighbours = new ArrayList<>();
+    public List<Arc> neighbours = new ArrayList<>();
     public double minDistance = Double.POSITIVE_INFINITY;
     public Vertex previous;
 
-    public Vertex(String argName) {
-        name = argName;
+    public Vertex(String name) {
+        this.name = name;
     }
 
+    @Override
     public String toString() {
-        return name;
+        return "Вершина{" +
+                name + '\'' +
+                (neighbours.size() > 0 ?
+                        ", сусідні вершини=" + (neighbours.size() != 1 ?
+                                neighbours.subList(1, neighbours.size() - 1) :
+                                neighbours) :
+                        "") +
+                ", відстань=" + minDistance +
+                "}";
     }
 
-    public void addEdge(Vertex v, int value) {
-        neighbours.add(new Edge(v, value));
+    public void addEdge(Vertex v, Double value) {
+        neighbours.add(new Arc(v, value));
     }
 
     public int compareTo(Vertex other) {

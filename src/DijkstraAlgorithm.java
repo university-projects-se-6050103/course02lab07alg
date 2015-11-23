@@ -11,9 +11,9 @@ public class DijkstraAlgorithm {
 
         while (!vertexQueue.isEmpty()) {
             Vertex topQueueVertex = vertexQueue.poll();
-            for (Edge edge : topQueueVertex.neighbours) {
-                Vertex currentVertex = edge.target;
-                double weight = edge.weight;
+            for (Arc arc : topQueueVertex.neighbours) {
+                Vertex currentVertex = arc.target;
+                double weight = arc.weight;
                 double distanceThroughTopQueueVertex = topQueueVertex.minDistance + weight;
                 if (distanceThroughTopQueueVertex < currentVertex.minDistance) {
                     vertexQueue.remove(currentVertex);
