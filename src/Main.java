@@ -14,11 +14,17 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        calculateShortestPathForVertex(0);
+        calculateShortestPathForVertices();
 
         for (int i = 0; i < verticiesCount; i++) {
-            System.out.println("Відстань від першої вершини до вершини " + (i + 1) +
-                    ": " + vertices.get(i).minDistance);
+            for (int j = 0; j < verticiesCount; j++) {
+                Double minDistance = nearestPaths.get(i).get(j);
+                if (minDistance != 0) {
+                    System.out.println("Від " + (i + 1) + " до " + (j + 1) + " відстань: " +
+                            minDistance);
+                }
+            }
+            System.out.println();
         }
     }
 
@@ -32,7 +38,7 @@ public class Main {
         nearestPaths.put(vertexIndex, new ArrayList<>());
         DijkstraAlgorithm.computeShortestPaths(vertices.get(vertexIndex));
         for (int i = 0; i < verticiesCount; i++) {
-            nearestPaths.get(vertexIndex).add(vertices.get(vertexIndex).minDistance);
+            nearestPaths.get(vertexIndex).add(vertices.get(i).minDistance);
         }
     }
 
