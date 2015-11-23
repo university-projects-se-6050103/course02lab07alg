@@ -3,8 +3,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class Dijkstra {
-    public static void computePaths(Vertex startingVertex) {
+public class DijkstraAlgorithm {
+    public static void computeShortestPaths(Vertex startingVertex) {
         startingVertex.minDistance = 0;
         PriorityQueue<Vertex> vertexQueue = new PriorityQueue<>();
         vertexQueue.add(startingVertex);

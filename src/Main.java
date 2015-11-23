@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,25 +8,32 @@ public class Main {
     private static List<Vertex> vertices = new ArrayList<>();
     private static Map<Integer, ArrayList<Double>> nearestPaths = new HashMap<>();
 
-    public static void main(String[] args) {
+    static {
         createVertices();
         addArcs();
+    }
 
-
-        Dijkstra.computePaths(vertices.get(0));
-
-        nearestPaths.put(0, new ArrayList<>());
-        for (int i = 0; i < verticiesCount; i++) {
-            nearestPaths.get(0).add(vertices.get(0).minDistance);
-        }
+    public static void main(String[] args) {
+        calculateShortestPathForVertex(0);
 
         for (int i = 0; i < verticiesCount; i++) {
             System.out.println("Відстань від першої вершини до вершини " + (i + 1) +
                     ": " + vertices.get(i).minDistance);
         }
+    }
 
-        //  List<Vertex> path = getShortestPathTo(V12);
-        //  System.out.println("Path: " + path);
+    private static void calculateShortestPathForVertices() {
+        for (int i = 0; i < verticiesCount; i++) {
+            calculateShortestPathForVertex(i);
+        }
+    }
+
+    private static void calculateShortestPathForVertex(int vertexIndex) {
+        nearestPaths.put(vertexIndex, new ArrayList<>());
+        DijkstraAlgorithm.computeShortestPaths(vertices.get(vertexIndex));
+        for (int i = 0; i < verticiesCount; i++) {
+            nearestPaths.get(vertexIndex).add(vertices.get(vertexIndex).minDistance);
+        }
     }
 
     private static void createVertices() {
