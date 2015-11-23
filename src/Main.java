@@ -1,8 +1,12 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     private static final int verticiesCount = 9;
+    private static Map<Integer, ArrayList<Double>> nearestPaths = new HashMap<>();
 
     public static void main(String[] args) {
         List<Vertex> vertices = new ArrayList<>();
@@ -37,13 +41,15 @@ public class Main {
         vertices.get(7).addEdge(vertices.get(8), 315);
 
 
-        Dijkstra.computePaths(vertices.get(0)); // run Dijkstra
+        Dijkstra.computePaths(vertices.get(0));
+
+        nearestPaths.put(0, new ArrayList<>());
         for (int i = 0; i < verticiesCount; i++) {
-            Dijkstra.V1Array.add(vertices.get(0).minDistance);
+            nearestPaths.get(0).add(vertices.get(0).minDistance);
         }
 
         for (int i = 0; i < verticiesCount; i++) {
-            Dijkstra.V1Array.add(vertices.get(i).minDistance);
+            nearestPaths.get(0).add(vertices.get(i).minDistance);
         }
 
 

@@ -4,36 +4,23 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 public class Dijkstra {
-    static ArrayList<Double> V1Array = new ArrayList<>();
-    static ArrayList<Double> V2Array = new ArrayList<>();
-    static ArrayList<Double> V3Array = new ArrayList<>();
-    static ArrayList<Double> V4Array = new ArrayList<>();
-    static ArrayList<Double> V5Array = new ArrayList<>();
-    static ArrayList<Double> V6Array = new ArrayList<>();
-    static ArrayList<Double> V7Array = new ArrayList<>();
-    static ArrayList<Double> V8Array = new ArrayList<>();
-    static ArrayList<Double> V9Array = new ArrayList<>();
-    static ArrayList<Double> V10Array = new ArrayList<>();
-    static ArrayList<Double> V11Array = new ArrayList<>();
-    static ArrayList<Double> V12Array = new ArrayList<>();
-
-    public static void computePaths(Vertex source) {
-        source.minDistance = 0.;
+    public static void computePaths(Vertex startingVertex) {
+        startingVertex.minDistance = 0;
         PriorityQueue<Vertex> vertexQueue = new PriorityQueue<>();
-        vertexQueue.add(source);
+        vertexQueue.add(startingVertex);
 
         while (!vertexQueue.isEmpty()) {
-            Vertex u = vertexQueue.poll();
-            for (Edge e : u.neighbours) {
-                Vertex v = e.target;
-                double weight = e.weight;
-                double distanceThroughU = u.minDistance + weight;
-                if (distanceThroughU < v.minDistance) {
-                    vertexQueue.remove(v);
+            Vertex topQueueVertex = vertexQueue.poll();
+            for (Edge edge : topQueueVertex.neighbours) {
+                Vertex currentVertex = edge.target;
+                double weight = edge.weight;
+                double distanceThroughU = topQueueVertex.minDistance + weight;
+                if (distanceThroughU < currentVertex.minDistance) {
+                    vertexQueue.remove(currentVertex);
 
-                    v.minDistance = distanceThroughU;
-                    v.previous = u;
-                    vertexQueue.add(v);
+                    currentVertex.minDistance = distanceThroughU;
+                    currentVertex.previous = topQueueVertex;
+                    vertexQueue.add(currentVertex);
                 }
             }
         }
