@@ -14,11 +14,11 @@ public class Dijkstra {
             for (Edge edge : topQueueVertex.neighbours) {
                 Vertex currentVertex = edge.target;
                 double weight = edge.weight;
-                double distanceThroughU = topQueueVertex.minDistance + weight;
-                if (distanceThroughU < currentVertex.minDistance) {
+                double distanceThroughTopQueueVertex = topQueueVertex.minDistance + weight;
+                if (distanceThroughTopQueueVertex < currentVertex.minDistance) {
                     vertexQueue.remove(currentVertex);
 
-                    currentVertex.minDistance = distanceThroughU;
+                    currentVertex.minDistance = distanceThroughTopQueueVertex;
                     currentVertex.previous = topQueueVertex;
                     vertexQueue.add(currentVertex);
                 }
