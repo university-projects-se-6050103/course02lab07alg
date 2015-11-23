@@ -24,7 +24,7 @@ public class Dijkstra {
 
         while (!vertexQueue.isEmpty()) {
             Vertex u = vertexQueue.poll();
-            for (Edge e : u.adjacents) {
+            for (Edge e : u.neighbours) {
                 Vertex v = e.target;
                 double weight = e.weight;
                 double distanceThroughU = u.minDistance + weight;

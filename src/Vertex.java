@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Vertex implements Comparable<Vertex> {
     public final String name;
-    public Edge[] adjacents;
+    public List<Edge> neighbours = new ArrayList<>();
     public double minDistance = Double.POSITIVE_INFINITY;
     public Vertex previous;
 
@@ -10,6 +13,10 @@ public class Vertex implements Comparable<Vertex> {
 
     public String toString() {
         return name;
+    }
+
+    public void addEdge(Vertex v, int value) {
+        neighbours.add(new Edge(v, value));
     }
 
     public int compareTo(Vertex other) {
